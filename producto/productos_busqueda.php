@@ -5,8 +5,9 @@ $conexion=conectar();
 
 $prodBusc=$_POST['prodBusc'];
 
-$query = $conexion->prepare("SELECT IdProducto, Nombre, Descripcion, Stock, PrecioVenta FROM producto WHERE Nombre LIKE '%$prodBusc%'");
-// $query->bind_param('s',$prodBusc);
+$query = $conexion->prepare("SELECT IdProducto, Nombre, Descripcion, Stock, PrecioVenta FROM producto WHERE Nombre LIKE ?");//%$prodBusc%...
+$valorBusc="%".$prodBusc."%";
+$query->bind_param('s',$valorBusc);
 $query->execute();
 $resultado = $query->get_result();
 
