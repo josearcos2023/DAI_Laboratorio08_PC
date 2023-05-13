@@ -43,10 +43,6 @@ desconectar($conexion);
                         <a href="#" class="nav-item nav-link disabled">Proveedores</a>
                     </div>
                     <div>
-                        <!-- <form class="d-flex" role="search" action="productos_busqueda.php" method="post">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" name="prodBusc" id="prodBusc" >
-                            <button class="btn btn-light" type="submit">Buscar</button>
-                        </form> -->
                         <form class="d-flex" role="search" action="productos.php" method="post">
                             <input class="form-control me-2" type="search" placeholder="Buscar" name="prodBusc" id="prodBusc" >
                             <button class="btn btn-light" type="submit">Buscar</button>
