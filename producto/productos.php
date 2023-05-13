@@ -3,9 +3,19 @@ include ('../conexion.php');
 
 $conexion=conectar();
 
-$query = $conexion->prepare("SELECT IdProducto, Nombre, Descripcion, Stock, PrecioVenta FROM producto");
-$query->execute();
-$resultado = $query->get_result();
+$prodBusc=$_POST['prodBusc'];
+
+if ($prodBusc){
+    $query = $conexion->prepare("SELECT IdProducto, Nombre, Descripcion, Stock, PrecioVenta FROM producto WHERE Nombre LIKE ?");//%$prodBusc%...
+    $valorBusc="%".$prodBusc."%";
+    $query->bind_param('s',$valorBusc);
+    $query->execute();
+    $resultado = $query->get_result();
+} else {
+    $query = $conexion->prepare("SELECT IdProducto, Nombre, Descripcion, Stock, PrecioVenta FROM producto");
+    $query->execute();
+    $resultado = $query->get_result();
+}
 
 desconectar($conexion);
 ?>
@@ -33,7 +43,11 @@ desconectar($conexion);
                         <a href="#" class="nav-item nav-link disabled">Proveedores</a>
                     </div>
                     <div>
-                        <form class="d-flex" role="search" action="productos_busqueda.php" method="post">
+                        <!-- <form class="d-flex" role="search" action="productos_busqueda.php" method="post">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" name="prodBusc" id="prodBusc" >
+                            <button class="btn btn-light" type="submit">Buscar</button>
+                        </form> -->
+                        <form class="d-flex" role="search" action="productos.php" method="post">
                             <input class="form-control me-2" type="search" placeholder="Buscar" name="prodBusc" id="prodBusc" >
                             <button class="btn btn-light" type="submit">Buscar</button>
                         </form>
