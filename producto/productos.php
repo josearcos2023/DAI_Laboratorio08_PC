@@ -3,7 +3,7 @@ include ('../conexion.php');
 
 $conexion=conectar();
 
-$query = $conexion->prepare("SELECT * FROM producto");
+$query = $conexion->prepare("SELECT IdProducto, Nombre, Descripcion, Stock, PrecioVenta FROM producto");
 $query->execute();
 $resultado = $query->get_result();
 

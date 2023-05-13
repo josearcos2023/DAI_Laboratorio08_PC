@@ -5,7 +5,7 @@ $conexion=conectar();
 
 $idProducto=$_POST['IdProducto'];
 
-$query = $conexion->prepare('SELECT * FROM producto WHERE IdProducto = ?');
+$query = $conexion->prepare('SELECT IdProducto, Nombre, Descripcion, Stock, PrecioVenta FROM producto WHERE IdProducto = ?');
 $query->bind_param('i',$idProducto);
 $query->execute();
 
